@@ -35,7 +35,7 @@
            github_token: ${{ secrets.GITHUB_TOKEN }}
          run: |
            echo $GITHUB_TOKEN
-           data=$(cat <<EOS
+           yaml=$(cat <<EOF
 name: Dummy-golangci-lint
 on:
   push:
@@ -52,6 +52,7 @@ jobs:
     steps:
       - name: Exit with success
         run: exit 0
+EOF
 )
-           echo "$str"
+           echo "$yaml"
            exit 0
