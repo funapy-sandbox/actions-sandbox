@@ -35,4 +35,23 @@
            github_token: ${{ secrets.GITHUB_TOKEN }}
          run: |
            echo $GITHUB_TOKEN
+           data=$(cat <<EOS
+name: Dummy-golangci-lint
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  golangci:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Exit with success
+        run: exit 0
+)
+           echo "$str"
            exit 0
