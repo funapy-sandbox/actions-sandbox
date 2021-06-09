@@ -31,7 +31,7 @@
      runs-on: ubuntu-latest
      steps:
        - name: Create dummy workflow
-         with:
+         env:
            github_token: ${{ secrets.GITHUB_TOKEN }}
          run: |
            echo $GITHUB_TOKEN
