@@ -1,0 +1,13 @@
+on: workflow_dispatch
+
+name: Workflow dispatch events
+
+jobs:
+  dispatch:
+    name: Workflow dispatch events
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Hello
+      run: |
+        echo "hello"
