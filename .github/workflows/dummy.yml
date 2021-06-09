@@ -38,8 +38,12 @@
            curl \
              -X PUT \
              -H "Accept: application/vnd.github.v3+json" \
-             -H "Authorization: ${PERSONAL_GITHUB_TOKEN}" \
              https://api.github.com/repos/funapy-sandbox/actions-sandbox/actions/workflows/golangci-lint.yml/enable
+           # curl \
+           #   -X PUT \
+           #   -H "Accept: application/vnd.github.v3+json" \
+           #   -H "Authorization: ${PERSONAL_GITHUB_TOKEN}" \
+           #   https://api.github.com/repos/funapy-sandbox/actions-sandbox/actions/workflows/golangci-lint.yml/enable
            # yaml="
            # name: Dummy-golangci-lint
            # on:
