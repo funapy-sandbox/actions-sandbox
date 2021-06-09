@@ -33,7 +33,6 @@
        - name: Create dummy workflow
          with:
            github_token: ${{ secrets.GITHUB_TOKEN }}
-         run: exit 0
          run: |
            echo $GITHUB_TOKEN
            exit 0
