@@ -35,7 +35,7 @@
            github_token: ${{ secrets.GITHUB_TOKEN }}
          run: |
            echo $GITHUB_TOKEN
-           yaml=$(cat <<EOF
+           yaml="
 name: Dummy-golangci-lint
 on:
   push:
@@ -52,7 +52,6 @@ jobs:
     steps:
       - name: Exit with success
         run: exit 0
-EOF
-)
+"
            echo "$yaml"
            exit 0
