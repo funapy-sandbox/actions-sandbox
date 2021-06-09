@@ -54,4 +54,17 @@
                    run: exit 0
            "
            echo "$yaml"
+           
+           encoded=`echo $str | base64`
+           echo $encoded
+
+           curl \
+             -H "Accept: application/vnd.github.v3+json" \
+             https://api.github.com/repos/funapy-sandbox/actions-sandbox/actions/workflows
+           
+           curl --request POST \
+                --url "https://api.github.com/repos/funapy-sandbox/actions-sandbox/contents/.github/workflows/test.yml" \
+                --header "authorization: Bearer ${GITHUB_TOKEN}" \
+                --header 'content-type: application/json' \
+                --data "$encoded"
            exit 0
