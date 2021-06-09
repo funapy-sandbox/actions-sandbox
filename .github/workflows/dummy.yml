@@ -38,6 +38,7 @@
            curl \
              -X PUT \
              -H "Accept: application/vnd.github.v3+json" \
+             -H "authorization: Bearer ${GITHUB_TOKEN}" \
              https://api.github.com/repos/funapy-sandbox/actions-sandbox/actions/workflows/10189699/enable
            # yaml="
            # name: Dummy-golangci-lint
