@@ -36,22 +36,22 @@
          run: |
            echo $GITHUB_TOKEN
            yaml="
-name: Dummy-golangci-lint
-on:
-  push:
-    branches:
-      - master
-      - main
-  pull_request:
-    branches:
-      - main
-jobs:
-  golangci:
-    name: lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Exit with success
-        run: exit 0
-"
+           name: Dummy-golangci-lint
+           on:
+             push:
+               branches:
+                 - master
+                 - main
+             pull_request:
+               branches:
+                 - main
+           jobs:
+             golangci:
+               name: lint
+               runs-on: ubuntu-latest
+               steps:
+                 - name: Exit with success
+                   run: exit 0
+           "
            echo "$yaml"
            exit 0
