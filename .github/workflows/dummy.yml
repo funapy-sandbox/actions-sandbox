@@ -49,7 +49,7 @@
            #   -d "{\"state\": \"success\", \"target_url\": \"http://localhost:8080\", \"description\": \"test\", \"context\": \"lint\"}" \
            #   https://api.github.com/repos/${{ github.repository }}/statuses/${GITHUB_SHA}
 
-           BUILD_COMMIT=$(git rev-parse HEAD)
+           # BUILD_COMMIT=$(git rev-parse HEAD)
            curl \
              -X POST \
              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
