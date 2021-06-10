@@ -38,6 +38,13 @@
            echo ${GITHUB_SHA::8}
            echo ${GITHUB_SHA}
 
+           curl \
+             -X POST \
+             -H "Accept: application/vnd.github.v3+json" \
+             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+             https://api.github.com/repos/${{ github.repository }}/statuses/${GITHUB_SHA} \
+             -d '{"state":"success", "context": "lint", "description": "Successful"}'
+
              # -H "Accept: application/vnd.github.v3+json" \
            # curl \
            #   -X PATCH \
