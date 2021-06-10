@@ -51,5 +51,6 @@ jobs:
           --data '{
             "context": "lint",
             "state": "success",
-            "description": "lint passed"
+            "description": "lint passed",
+            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           }'
