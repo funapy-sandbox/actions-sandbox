@@ -38,11 +38,12 @@
            echo ${GITHUB_SHA::8}
            echo ${GITHUB_SHA}
 
+             # -H "Accept: application/vnd.github.v3+json" \
            curl \
              -X PATCH \
-             -H "Accept: application/vnd.github.v3+json" \
-             -H "Authorization: Bearer ${GITHUB_TOKEN}" \
-             https://api.github.com/repos/funapy-sandbox/actions-sandbox/docs/protection/required_status_checks \
+             --header 'content-type: application/json' \
+             --header "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+             https://api.github.com/repos/${{ github.repository }}/docs/protection/required_status_checks \
              -d '{"strict":false, "contexts": ["lint"]}'
            # curl \
            #   -X POST \
