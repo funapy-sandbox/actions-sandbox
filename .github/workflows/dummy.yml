@@ -43,7 +43,7 @@
              -X PATCH \
              --header "Accept: application/vnd.github.v3+json" \
              --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-             https://api.github.com/repos/${{ github.repository }}/docs/protection/required_status_checks \
+             https://api.github.com/repos/${{ github.repository }}/branches/docs/protection/required_status_checks \
              -d '{"strict":true}'
 
 
