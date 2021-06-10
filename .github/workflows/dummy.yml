@@ -41,7 +41,7 @@
            curl \
              -X PATCH \
              -H "Accept: application/vnd.github.v3+json" \
-             -H "Authorization: token $GITHUB_TOKEN" \
+             -H "Authorization: Bearer $GITHUB_TOKEN" \
              https://api.github.com/repos/funapy-sandbox/actions-sandbox/docs/protection/required_status_checks \
              -d '{"strict":false, "contexts": ["lint"]}'
            # curl \
