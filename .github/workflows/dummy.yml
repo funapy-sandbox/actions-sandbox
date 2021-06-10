@@ -48,7 +48,7 @@
              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
              -H "Accept: application/vnd.github.v3+json" \
              -d "{\"name\":\"lint\", \"head_sha\": \"${GITHUB_SHA}\", \"status\": \"completed\", \"conclusion\": \"success\"}"
-             https://api.github.com/repos/funapy-sandbox/actions-sandbox/check-runs \
+             https://api.github.com/repos/funapy-sandbox/actions-sandbox/check-runs
 
            curl \
              -X POST \
