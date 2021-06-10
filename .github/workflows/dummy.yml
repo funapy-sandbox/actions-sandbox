@@ -50,7 +50,7 @@
              -H "Accept: application/vnd.github.v3+json" \
              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
              https://api.github.com/repos/${{ github.repository }}/statuses/SHA \
-             -d '{"state":"success", context: "lint", "sha": ${GITHUB_SHA}}'
+             -d '{"state":"success", "context": "lint", "sha": ${GITHUB_SHA}}'
 
              # -d '{"strict":false}'
            # curl \
