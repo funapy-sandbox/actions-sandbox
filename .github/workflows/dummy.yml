@@ -112,4 +112,4 @@
            #      --header "authorization: Bearer ${GITHUB_TOKEN}" \
            #      --header 'content-type: application/json' \
            #      --data "$encoded"
-           exit 0
+           # exit 0
