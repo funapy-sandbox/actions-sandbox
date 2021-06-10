@@ -39,17 +39,17 @@
            echo ${GITHUB_SHA}
 
              # -H "Accept: application/vnd.github.v3+json" \
-           curl \
-             -X PATCH \
-             --header "Accept: application/vnd.github.v3+json" \
-             --header "Authorization: token ${{ secrets.PERSONAL_GITHUB_TOKEN }}" \
-             https://api.github.com/repos/${{ github.repository }}/branches/docs/protection/required_status_checks \
-             -d '{"strict":false, "contexts": ["lint"]}'
+           # curl \
+           #   -X PATCH \
+           #   --header "Accept: application/vnd.github.v3+json" \
+           #   --header "Authorization: token ${{ secrets.PERSONAL_GITHUB_TOKEN }}" \
+           #   https://api.github.com/repos/${{ github.repository }}/branches/docs/protection/required_status_checks \
+           #   -d '{"strict":false, "contexts": ["lint"]}'
            curl \
              -X POST \
              -H "Accept: application/vnd.github.v3+json" \
-             https://api.github.com/repos/${{ github.repository }}/statuses/${GITHUB_SHA} \
-             -d '{"state":"success", context: "lint"}'
+             https://api.github.com/repos/${{ github.repository }}/statuses/SHA \
+             -d '{"state":"success", context: "lint", "sha": ${GITHUB_SHA}}'
 
              # -d '{"strict":false}'
            # curl \
