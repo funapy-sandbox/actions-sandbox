@@ -36,6 +36,18 @@
            personal_github_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
          run: |
            echo ${GITHUB_SHA::8}
+           echo ${GITHUB_SHA}
+           curl \
+             -X PATCH \
+             -H "Accept: application/vnd.github.v3+json" \
+             -H "Authorization: token $GITHUB_TOKEN"
+             https://api.github.com/repos/funapy-sandbox/actions-sandbox/docs/protection/required_status_checks \
+             -d '{"strict":false}'
+           # curl \
+           #   -X POST \
+           #   -H "Accept: application/vnd.github.v3+json" \
+           #   https://api.github.com/repos/funapy-sandbox/actions-sandbox/statuses/${GITHUB_SHA::8} \
+           #   -d '{"state":"success"}'
            # curl \
            #   -X PUT \
            #   -H "Accept: application/vnd.github.v3+json" \
