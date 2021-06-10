@@ -28,17 +28,30 @@ jobs:
           #   -d "{\"name\":\"lint\", \"head_sha\": \"${GITHUB_SHA}\", \"status\": \"completed\", \"conclusion\": \"success\"}" \
           #   https://api.github.com/repos/funapy-sandbox/actions-sandbox/check-runs
           #
+          # curl \
+          #   -X PATCH \
+          #   -H "Authorization: token ${{ secrets.PERSONAL_GITHUB_TOKEN }}" \
+          #   -H "Accept: application/vnd.github.v3+json" \
+          #   https://api.github.com/repos/funapy-sandbox/actions-sandbox/branches/docs/protection/required_status_checks \
+          #   -d '{"strict":false, "contexts": "lint"}'
           #
+          echo "get status"
+
           curl \
-            -X PATCH \
             -H "Authorization: token ${{ secrets.PERSONAL_GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/funapy-sandbox/actions-sandbox/branches/docs/protection/required_status_checks \
-            -d '{"strict":false, "contexts": "lint"}'
+            https://api.github.com/repos/${{ github.repository }}/commits/${GITHUB_SHA}/statuses
 
-          # curl \
-          #   -X POST \
-          #   -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          #   -H "Content-Type: application/json" \
-          #   -d "{\"state\": \"completed\", \"target_url\": \"http://localhost:8080\", \"description\": \"test\", \"context\": \"lint\"}" \
-          #   https://api.github.com/repos/${{ github.repository }}/statuses/${GITHUB_SHA}
+          echo "update status"
+          curl \
+            -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"state\": \"completed\", \"target_url\": \"http://localhost:8080\", \"description\": \"test\", \"context\": \"lint\"}" \
+            https://api.github.com/repos/${{ github.repository }}/statuses/${GITHUB_SHA}
+
+          echo "list status"
+          curl \
+            -H "Authorization: token ${{ secrets.PERSONAL_GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/commits/${GITHUB_SHA}/statuses
