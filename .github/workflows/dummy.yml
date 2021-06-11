@@ -43,7 +43,7 @@ jobs:
           #   -d "{\"state\": \"success\", \"target_url\": \"http://localhost:8080\", \"description\": \"test\", \"context\": \"lint\"}" \
           #   https://api.github.com/repos/${{ github.repository }}/statuses/${GITHUB_SHA}
           #
-          curl --request PATCH \
+          curl --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
@@ -53,4 +53,4 @@ jobs:
             "description": "lint passed",
           }'
 
-          sleep 15s
+          sleep 50s
