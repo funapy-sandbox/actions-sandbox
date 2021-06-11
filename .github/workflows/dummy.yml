@@ -21,11 +21,10 @@ jobs:
           echo ${GITHUB_SHA::8}
           echo ${GITHUB_SHA}
 
-          # -H "Accept: application/vnd.github.v3+json" \
           curl \
             -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Content-Type: application/json" \
+            -H "Accept: application/vnd.github.v3+json" \
             -d "{\"name\":\"lint\", \"head_sha\": \"${{ github.sha }}\", \"status\": \"completed\", \"conclusion\": \"success\", \"output\": \"title\": \"All tests passed\", \"summary\": \"123 out of 123 tests passed\"}" \
             https://api.github.com/repos/funapy-sandbox/actions-sandbox/check-runs
           #
@@ -46,8 +45,8 @@ jobs:
           #
           curl --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          --header 'content-type: application/json' \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
           --data '{
             "context": "lint",
             "state": "success",
