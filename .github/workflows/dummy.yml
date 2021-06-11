@@ -12,6 +12,11 @@ jobs:
     name: dynamic
     runs-on: ubuntu-latest
     steps:
+      # - uses: actions/checkout@v2
+      # - uses: './.github/actions/force-updater'
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     SHA: ${{ github.sha }}
       - name: Force Success Status
         if: ${{ always() }}
         env:
@@ -20,13 +25,23 @@ jobs:
         run: |
           echo ${GITHUB_SHA::8}
           echo ${GITHUB_SHA}
+          
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          --data '{
+            "context": "lint",
+            "state": "success",
+            "description": "lint passed"
+          }'
 
-          curl \
-            -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            -d "{\"name\":\"lint\", \"head_sha\": \"${{ github.sha }}\", \"status\": \"completed\", \"conclusion\": \"success\", \"output\": {\"title\": \"    All tests passed\", \"summary\": \"123 out of 123 tests passed\"}}" \
-            https://api.github.com/repos/funapy-sandbox/actions-sandbox/check-runs
+          # curl \
+          #   -X POST \
+          #   -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          #   -H "Accept: application/vnd.github.v3+json" \
+          #   -d "{\"name\":\"lint\", \"head_sha\": \"${{ github.sha }}\", \"status\": \"completed\", \"conclusion\": \"success\", \"output\": {\"title\": \"    All tests passed\", \"summary\": \"123 out of 123 tests passed\"}}" \
+          #   https://api.github.com/repos/funapy-sandbox/actions-sandbox/check-runs
           #
           # curl \
           #   -X PATCH \
@@ -43,6 +58,15 @@ jobs:
           #   -d "{\"state\": \"success\", \"target_url\": \"http://localhost:8080\", \"description\": \"test\", \"context\": \"lint\"}" \
           #   https://api.github.com/repos/${{ github.repository }}/statuses/${GITHUB_SHA}
           #
+          # curl --request POST \
+          # --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          #   -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          #   -H "Accept: application/vnd.github.v3+json" \
+          # --data '{
+          #   "context": "dynamic-execution / dynamic",
+          #   "state": "success",
+          #   "description": "dynamic"
+          # }'
           curl --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
@@ -50,6 +74,5 @@ jobs:
           --data '{
             "context": "lint",
             "state": "success",
-            "description": "lint passed",
-            "target_url": "https://github.com/funapy-sandbox/actions-sandbox/runs/2799537170"
+            "description": "lint passed"
           }'
