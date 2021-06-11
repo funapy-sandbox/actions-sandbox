@@ -48,7 +48,7 @@ jobs:
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
           --data '{
-            "context": "alint",
+            "context": "lint",
             "state": "success",
             "description": "lint passed",
             "target_url": "https://github.com/funapy-sandbox/actions-sandbox/runs/2799537170"
