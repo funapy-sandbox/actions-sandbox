@@ -1,1 +1,1 @@
-## Sample Doc
+## Sample Document
