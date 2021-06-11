@@ -50,8 +50,9 @@ jobs:
           --data '{
             "context": "dynamic-execution / dynamic",
             "state": "success",
-            "description": "dynamic",
+            "description": "dynamic"
           }'
+
           curl --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
@@ -59,5 +60,5 @@ jobs:
           --data '{
             "context": "lint",
             "state": "success",
-            "description": "lint passed",
+            "description": "lint passed"
           }'
