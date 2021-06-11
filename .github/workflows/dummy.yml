@@ -26,7 +26,7 @@ jobs:
             -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
-            -d "{\"name\":\"lint\", \"head_sha\": \"${{ github.sha }}\", \"status\": \"completed\", \"conclusion\": \"success\"}" \
+            -d "{\"name\":\"lint\", \"head_sha\": \"${{ github.sha }}\", \"status\": \"completed\", \"conclusion\": \"success\", \"output\": \"title\": \"All tests passed\", \"summary\": \"123 out of 123 tests passed\"}" \
             https://api.github.com/repos/funapy-sandbox/actions-sandbox/check-runs
           #
           # curl \
