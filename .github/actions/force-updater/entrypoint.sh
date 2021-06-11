@@ -1,3 +1,4 @@
+#!/bin/sh
 
 curl --request POST \
   --url https://api.github.com/repos/funapy-sandbox/actions-sandbox/statuses/${SHA} \
