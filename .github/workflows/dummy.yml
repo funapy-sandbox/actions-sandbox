@@ -52,3 +52,5 @@ jobs:
             "state": "success",
             "description": "lint passed",
           }'
+
+          sleep 15s
