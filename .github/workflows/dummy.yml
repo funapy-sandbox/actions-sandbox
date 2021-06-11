@@ -51,5 +51,5 @@ jobs:
             "context": "lint",
             "state": "success",
             "description": "lint passed",
-            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            "target_url": "https://github.com/funapy-sandbox/actions-sandbox/runs/2799537170"
           }'
