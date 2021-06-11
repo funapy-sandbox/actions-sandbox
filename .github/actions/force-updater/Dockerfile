@@ -1,3 +1,3 @@
 FROM ubuntu
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
