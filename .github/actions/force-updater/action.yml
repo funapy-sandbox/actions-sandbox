@@ -1,0 +1,5 @@
+name: 'update action'
+description: 'sample action'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
