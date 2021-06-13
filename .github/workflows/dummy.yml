@@ -9,7 +9,6 @@ on:
       - main
 jobs:
   dynamic:
-    name: dynamic
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
