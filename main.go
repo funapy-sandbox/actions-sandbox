@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -22,8 +21,6 @@ func main() {
 		log.Fatalf("environment is empty\ttoken: %s, sha:%s", token, sha)
 	}
 
-	fmt.Println(sha)
-
 	d, err := json.Marshal(Request{
 		Context:     "lint",
 		State:       "success",
@@ -32,8 +29,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to marshal: %s", err.Error())
 	}
-
-	log.Println(string(d))
 
 	url := "https://api.github.com/repos/funapy-sandbox/actions-sandbox/statuses/" + sha
 
@@ -50,10 +45,8 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	log.Printf("status code: %d\n", resp.StatusCode)
-	b, err := ioutil.ReadAll(resp.Body)
+	_, err = ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatalf("failed to read body: %s", err.Error())
 	}
-	log.Println(string(b))
 }
