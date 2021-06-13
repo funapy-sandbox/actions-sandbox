@@ -12,7 +12,6 @@ jobs:
     name: dynamic
     runs-on: ubuntu-latest
     steps:
-      - name: Force Success Status
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
