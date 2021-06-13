@@ -25,7 +25,9 @@ jobs:
         run: |
           echo ${GITHUB_SHA::8}
           echo ${GITHUB_SHA}
-          sleep 2m
+
+          sleep 15s
+
           curl --request POST \
           --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
