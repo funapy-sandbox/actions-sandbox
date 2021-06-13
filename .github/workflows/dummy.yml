@@ -1,4 +1,4 @@
-name: dynamic-execution
+name: Force Status Update
 on:
   push:
     branches:
@@ -11,8 +11,7 @@ jobs:
   dynamic:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: setup go
         uses: actions/setup-go@v2
         with:
