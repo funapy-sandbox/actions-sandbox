@@ -29,6 +29,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to marshal: %s", err.Error())
 	}
+
 	log.Println(string(d))
 
 	url := "https://api.github.com/repos/funapy-sandbox/actions-sandbox/statuses/" + sha
