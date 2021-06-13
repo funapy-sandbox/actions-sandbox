@@ -40,7 +40,7 @@ jobs:
           }'
           
           echo "sleep 5s"
-          sleep 15s
+          sleep 30s
           echo "sleeped"
 
           # curl \
