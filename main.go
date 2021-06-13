@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -16,10 +17,12 @@ type Request struct {
 }
 
 func main() {
-	token, sha := os.Getenv("GITHUB_TOKEN"), os.Getenv("SHA")
+	token, sha := os.Getenv("GITHUB_TOKEN"), os.Getenv("GITHUB_SHA")
 	if len(token) == 0 || len(sha) == 0 {
 		log.Fatalf("environment is empty\ttoken: %s, sha:%s", token, sha)
 	}
+
+	fmt.Println(sha)
 
 	d, err := json.Marshal(Request{
 		Context:     "lint",
