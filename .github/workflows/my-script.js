@@ -10,5 +10,6 @@ const { data } = await octokit.request('POST /repos/{owner}/{repo}/statuses/{sha
   sha: sha,
   state: "success"
 });
+
 console.log("created: %s", data.url);
 
