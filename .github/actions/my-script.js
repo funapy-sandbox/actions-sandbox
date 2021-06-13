@@ -11,4 +11,4 @@ const { data } = octokit.request('POST /repos/{owner}/{repo}/statuses/{sha}', {
   state: "success"
 });
 
-console.log("created: %s", data.url);
+console.log(JSON.stringify(data));
