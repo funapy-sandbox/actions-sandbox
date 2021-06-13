@@ -13,31 +13,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Force Success Status
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          version: 12
+      - run: npm install @octokit/action
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           personal_github_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-        run: |
-          echo ${GITHUB_SHA::8}
-          echo ${GITHUB_SHA}
-          
-          echo "sleep 5s"
-          sleep 10s
-          echo "sleeped"
-
-          echo "start update"
-
-          curl --request POST \
-          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          --data '{
-            "context": "lint",
-            "state": "success",
-            "description": "lint passed"
-          }'
-          
-          echo "updated"
-
-          echo "sleep 5s"
-          sleep 5s
-          echo "sleeped"
+        # run: |
+        #   echo ${GITHUB_SHA::8}
+        #   echo ${GITHUB_SHA}
+        #   
+        #   echo "sleep 5s"
+        #   sleep 10s
+        #   echo "sleeped"
+        # 
+        #   echo "start update"
+        # 
+        #   curl --request POST \
+        #   --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+        #   -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        #   -H "Accept: application/vnd.github.v3+json" \
+        #   --data '{
+        #     "context": "lint",
+        #     "state": "success",
+        #     "description": "lint passed"
+        #   }'
+        #   
+        #   echo "updated"
+        # 
+        #   echo "sleep 5s"
+        #   sleep 5s
+        #   echo "sleeped"
