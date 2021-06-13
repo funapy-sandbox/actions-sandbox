@@ -38,6 +38,10 @@ jobs:
             "state": "success",
             "description": "lint passed"
           }'
+          
+          echo "sleep 5s"
+          sleep 15s
+          echo "sleeped"
 
           # curl \
           #   -X POST \
