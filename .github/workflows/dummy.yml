@@ -22,7 +22,8 @@ jobs:
       - name: Execute update
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SHA: ${{ github.sha }}
+          # sha: ${{ github.sha }}
+          sha: ${GITHUB_SHA::8}
         run: go run main.go
       - name: Post Sleep
         run: sleep 15s
