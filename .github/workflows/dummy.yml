@@ -17,7 +17,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          version: 12
+          version: 16
       - name: Install octokit/action
         run: npm install @octokit/action
       - name: Execute script
