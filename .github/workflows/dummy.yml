@@ -13,6 +13,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        run: git branch
       - name: setup go
         uses: actions/setup-go@v2
         with:
