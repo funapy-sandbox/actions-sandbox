@@ -6,7 +6,7 @@ on:
       - main
   pull_request:
     paths:
-      - "**.go"
+      - "cmd/serviceA/main.go"
 
 jobs:
   golangci:
