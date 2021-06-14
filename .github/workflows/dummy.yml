@@ -13,6 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: git rev-parse --short HEAD
+      - name: For Test
+        run: |
+          curl \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/funapy-sandbox/actions-sandbox/branches/main/protection
       - run: echo ${{ github.sha }}
       - name: setup go
         uses: actions/setup-go@v2
