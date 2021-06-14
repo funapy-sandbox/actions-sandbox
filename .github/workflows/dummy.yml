@@ -13,6 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: git rev-parse --short HEAD
+      - run: echo ${{ github.sha }}
       - name: setup go
         uses: actions/setup-go@v2
         with:
