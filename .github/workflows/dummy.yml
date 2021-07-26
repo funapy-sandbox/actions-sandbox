@@ -19,5 +19,7 @@ jobs:
       - name: Execute update
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SHA: ${{ github.event.pull_request.head.sha }}
+          SHA: beb5df1b608f121d61ca221dacb6186f3fa28c71
+          # SHA: ${{ github.event.pull_request.head.sha }}
+          # SHA: ${{ github.sha }}
         run: go run main.go
