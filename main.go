@@ -2,12 +2,16 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/google/go-github/github"
+	"golang.org/x/oauth2"
 )
 
 type Request struct {
@@ -22,13 +26,41 @@ func main() {
 		log.Fatalf("environment is empty\ttoken: %s, sha:%s", token, sha)
 	}
 
+	if err := getStatusV2(token, sha); err != nil {
+		log.Fatalf("failed to get status: %v", err)
+	}
+	fmt.Println("success getStatusV2")
+
 	if err := getStatus(token, sha); err != nil {
 		log.Fatalf("failed to get status: %v", err)
 	}
+	fmt.Println("success getStatus")
 
 	if err := updateStatus(token, sha); err != nil {
 		log.Fatalf("failed to update: %v", err)
 	}
+	fmt.Println("success updateStatus")
+}
+
+func getStatusV2(token, sha string) error {
+	ctx := context.Background()
+	ts := oauth2.StaticTokenSource(
+		&oauth2.Token{AccessToken: token},
+	)
+	tc := oauth2.NewClient(ctx, ts)
+
+	client := github.NewClient(tc)
+
+	statuses, _, err := client.Repositories.ListStatuses(ctx, "funapy-sandbox", "actions-sandbox", sha, &github.ListOptions{})
+	if err != nil {
+		return err
+	}
+
+	for _, status := range statuses {
+		fmt.Printf("%#v\n", status)
+	}
+
+	return nil
 }
 
 func getStatus(token, sha string) error {
