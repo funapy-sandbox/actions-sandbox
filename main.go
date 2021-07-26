@@ -32,7 +32,7 @@ func main() {
 }
 
 func getStatus(token, sha string) error {
-	url := "https://api.github.com/repos/funapy-sandbox/actions-sandbox/commits/" + sha + "/statuses/"
+	url := "https://api.github.com/repos/funapy-sandbox/actions-sandbox/commits/" + sha + "/status/"
 
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
