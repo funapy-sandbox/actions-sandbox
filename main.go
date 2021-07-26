@@ -96,9 +96,10 @@ func getStatus(token, sha string) error {
 func updateStatus(token, sha string) error {
 	d, err := json.Marshal(Request{
 		Context:     "lint",
-		State:       "success",
-		Description: "lint passed",
+		State:       "error",
+		Description: "???",
 	})
+	// cState:       "success",
 	if err != nil {
 		return fmt.Errorf("failed to marshal: %w", err)
 	}
