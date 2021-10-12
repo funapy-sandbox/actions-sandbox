@@ -16,6 +16,7 @@ type Request struct {
 }
 
 func main() {
+	//
 	token, sha := os.Getenv("GITHUB_TOKEN"), os.Getenv("SHA")
 	if len(token) == 0 || len(sha) == 0 {
 		log.Fatalf("environment is empty\ttoken: %s, sha:%s", token, sha)
